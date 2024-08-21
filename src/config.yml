@@ -1,0 +1,86 @@
+Lobby.world: "world"
+Lobby.x: 0.0
+Lobby.y: 0.0
+Lobby.z: 0.0
+Lobby.Pitch: 0.0
+
+Scoreboard.enabled: true
+Scoreboard.title: '&e&lEscape from the Beast'
+Scoreboard.lines:
+  - '&5Map:'
+  - '&a%map%'
+  - '&r'
+  - '&5Players:'
+  - '&a%players_count%/%max_players_count%'
+  - '&r'
+  - '&5Time left:'
+  - '&a%time_left%'
+  - '&r'
+  - '&6server_ip'
+
+Arena:
+  WaitingStart: 100
+  WaitingFull: 20
+  BeastRelease: 15
+  AllowedCommands:
+    - leave
+
+Messages:
+  PlayerJoin: "&8[&a+&8] &7%player% has joined to the game (%players_count%/%max_players_count%)"
+  PlayerLeave: "&8[&c-&8] &7%player% has left the game (%players_count%/%max_players_count%)"
+  PlayerKilledByPlayer: "&eThe player &6%player% &e was killed by &6%killer%"
+  PlayerDied: "&eThe player &6%player% &edied"
+  PlayersWin:
+    - "&7---------------------------------------"
+    - "&eThe &6players &ehas won the game"
+    - "&7---------------------------------------"
+  BeastWin:
+    - "&7---------------------------------------"
+    - "&eThe &6beast &ehas won the game"
+    - "&7---------------------------------------"
+  GameFinished:
+    - "&6The game has &e&lFINISHED"
+    - "&cThe game will restart in 10 seconds"
+
+Commands:
+  Join:
+    NoMaps: "&cThere are no maps available to join"
+    MapNotFound: "&cThat map doesn't exit"
+    MapNotFullyConfig: "&cThe map isn't configurated correctly, it seems that is missing some things to set"
+    InGame: "&cThe arena is currently in game"
+    GameFull: "&cThe arena is full!"
+    PlayerAlreadyInGame: "&cYou're already in a game"
+  NoPermission: "&cNo permissions"
+
+Menu:
+  PrincipalVoteMenu:
+    Title: "&a&lVote"
+    TimeName: "&6&lTime"
+    TimeLore:
+      - "&7Choose the time to be played in the game"
+    SpeedName: "&b&lSpeed"
+    SpeedLore:
+      - "&7Choose the speed to be played in the game"
+  SpeedVoteMenu:
+    Title: "&7&lVote the speed"
+    ItemSpeedNormalName: "&a&lSpeed Normal"
+    ItemSpeedNormalLore:
+      - "&7Vote per speed normal"
+      - "&4%votes% &4Votes"
+    ItemSpeedIIName: "&e&lSpeed II"
+    ItemSpeedIILore:
+      - "&7Vote per speed II"
+      - "&4%votes% &4Votes"
+    ItemSpeedIIIName: "&4&lSpeed III"
+    ItemSpeedIIILore:
+      - "&7Vote per speed III"
+      - "&4%votes% &4Votes"
+    Messages:
+      AlreadyVoted: "&cYou have already voted!"
+      MissingRank: "&cYou need a higher rank for do this!"
+      VotedForNormalSpeed: "&6%player% &ehas voted for &aNormal Speed! &e%votes% &eVotes!"
+      VotedForIISpeed: "&6%player% &ehas voted for &aSpeed II! &e%votes% &eVotes!"
+      VotedForIIISpeed: "&6%player% &ehas voted for &aSpeed III! &e%votes% &eVotes!"
+
+Item:
+  PrincipalVoteMenu: "&aVote"

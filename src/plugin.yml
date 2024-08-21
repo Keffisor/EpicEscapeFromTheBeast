@@ -1,0 +1,11 @@
+main: com.Keffisor21.EFTB.EFTB
+name: EpicEFTB
+author: Keffisor21
+version: 1.0
+api-version: 1.8
+commands:
+    eftb:
+        descripcion: Main command
+        aliases: [escapefromthebeast, escapadelabestia, edlb]
+    leave:
+        description: Leave the arena
