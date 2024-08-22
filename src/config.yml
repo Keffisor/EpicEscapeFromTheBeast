@@ -24,6 +24,10 @@ Arena:
   BeastRelease: 15
   AllowedCommands:
     - leave
+    - eftb leave
+    - edlb leave
+    - eftb quit
+    - edlb quit
 
 Messages:
   PlayerJoin: "&8[&a+&8] &7%player% has joined to the game (%players_count%/%max_players_count%)"
@@ -38,9 +42,38 @@ Messages:
     - "&7---------------------------------------"
     - "&eThe &6beast &ehas won the game"
     - "&7---------------------------------------"
+  GameStarting:
+    ServerFull: "&9Server full, starting game..."
+    StartingCount: "&9The game will start in %seconds% seconds"
+    StartingCountLast: "&9The game will start in 1 second"
+    NoEnoughPlayers: "&cFaltan jugadores para iniciar, esperando jugadores"
+  GameStarted:
+    Started:
+      - "&9Gooooo!!!"
+    TimeSelected_DAY: "&6The time of &aDAY &6has been selected for this game."
+    TimeSelected_SUNRISE: "&6The time of &aSUNRISE &6has been selected for this game."
+    TimeSelected_NIGHT: "&6The time of &aNIGHT &6has been selected for this game."
+    SpeedSelected_NORMAL: "&6The speed &aNORMAL &6has been selected for this game."
+    SpeedSelected_II: "&6The speed &aII &6has been selected for this game."
+    SpeedSelected_III: "&6The speed &aIII &6has been selected for this game."
+  BeastRelease:
+    PlayerSelected:
+      Title:
+        Title: ""
+        Subtitle: "&eYou're the &cBEAST"
+      Messages:
+        - "&eYou're the &cBEAST"
+    Release:
+      - "&eThe &cBEAST &ewill be released in %release_time% seconds"
+    Beast:
+      ReleaseCount: "&6You will be released in %time% seconds"
+      ReleaseCountLast: "&6You will be released in 1 second"
+    Released:
+      - "&eThe &cBEAST &6%beast% &ehas been &c&lRELEASED"
   GameFinished:
     - "&6The game has &e&lFINISHED"
     - "&cThe game will restart in 10 seconds"
+  NotAllowedCommand: "&cYou can't execute that command in game!"
 
 Commands:
   Join:
@@ -81,6 +114,26 @@ Menu:
       VotedForNormalSpeed: "&6%player% &ehas voted for &aNormal Speed! &e%votes% &eVotes!"
       VotedForIISpeed: "&6%player% &ehas voted for &aSpeed II! &e%votes% &eVotes!"
       VotedForIIISpeed: "&6%player% &ehas voted for &aSpeed III! &e%votes% &eVotes!"
+    TimeVoteMenu:
+      Title: "&7&lVote the time"
+      ItemTimeDayName: "&e&lDay"
+      ItemTimeDayLore:
+        - "&7Vote per day"
+        - "&4%votes% &4Votes"
+      ItemTimeSunriseName: "&4&lSunrise"
+      ItemTimeSunriseLore:
+        - "&7Vote per sunrise"
+        - "&4%votes% &4Votes"
+      ItemTimeNightName: "&8&lNight"
+      ItemTimeNightLore:
+        - "&7Vote per night"
+        - "&4%votes% &4Votes"
+      Messages:
+        AlreadyVoted: "&cYou have already voted!"
+        MissingRank: "&cYou need a higher rank for do this!"
+        VotedForDay: "&6%player% &ehas voted for &aDay! &e%votes% &eVotes!"
+        VotedForSunrise: "&6%player% &ehas voted for &aSunrise! &e%votes% &eVotes!"
+        VotedForNight: "&6%player% &ehas voted for &aNight! &e%votes% &eVotes!"
 
 Item:
   PrincipalVoteMenu: "&aVote"

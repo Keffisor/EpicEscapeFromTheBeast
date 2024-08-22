@@ -44,9 +44,9 @@ public class ArenaScoreboardManager {
                     int minutes = timeLeft / 60;
                     int seconds = timeLeft % 60;
 
-                    String disMinu = (minutes < 10 ? "0" : "") + minutes;
+                    String disMin = (minutes < 10 ? "0" : "") + minutes;
                     String disSec = (seconds < 10 ? "0" : "") + seconds;
-                    String formattedTime = disMinu + ":" + disSec;
+                    String formattedTime = disMin + ":" + disSec;
 
                     scoreboard.setLine(0, line, s.
                             replaceAll("&", "§").

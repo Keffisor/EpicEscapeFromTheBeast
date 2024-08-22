@@ -6,6 +6,7 @@ import com.Keffisor21.EFTB.Configs.GlobalConfig;
 import com.Keffisor21.EFTB.Nms.Sound;
 import com.Keffisor21.EFTB.Utils.Task;
 import com.Keffisor21.EFTB.Utils.Utils;
+import com.google.common.collect.Lists;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -43,18 +44,19 @@ public class TaskBeastRelease extends Task {
             beast.getInventory().setArmorContents(armor);
             beast.getInventory().setItem(0, new ItemStack(Material.DIAMOND_SWORD));
 
-            arena.broadcastMessage(ChatColor.GREEN + "§eThe §cBEAST §ewill be released in %release_time% seconds".replace("%release_time%", String.valueOf(GlobalConfig.getTimingBeastRelease())));
+            Utils.setVariables(GlobalConfig.getConfigList("Messages.BeastRelease.Release"), Lists.newArrayList("%release_time%"), Lists.newArrayList(GlobalConfig.getTimingBeastRelease()))
+                    .forEach(arena::broadcastMessage);
             return;
         }
 
         if(time <= 10 && time > 1) {
-            beast.sendMessage("§6You will be released in " + time + " seconds");
+            beast.sendMessage(Utils.setVariables(GlobalConfig.getConfigString("Messages.BeastRelease.Beast.ReleaseCount"), Lists.newArrayList("%time%"), Lists.newArrayList(time)));
             beast.playSound(beast.getLocation(), Sound.CLICK.getBukkitSound(), 1.0F, 1.0F);
             return;
         }
 
         if(time == 1) {
-            beast.sendMessage("§6You will be released in " + time + " second");
+            beast.sendMessage(Utils.setVariables(GlobalConfig.getConfigString("Messages.BeastRelease.Beast.ReleaseCountLast"), Lists.newArrayList("%time%"), Lists.newArrayList(time)));
             beast.playSound(beast.getLocation(), Sound.CLICK.getBukkitSound(), 1.0F, 1.0F);
             return;
         }
@@ -69,7 +71,8 @@ public class TaskBeastRelease extends Task {
         arena.getCagesController().forceTeleportCage(beast, pos); // Force tp to a random regular player cage
 
         arena.getPlayers().forEach(p -> p.playSound(p.getLocation(), Sound.ANVIL_USE.getBukkitSound(), 1.0F, 1.0F));
-        arena.broadcastMessage("§eThe §cBEAST §6" + beast.getName() + " §ehas been §c§lRELEASED");
+        Utils.setVariables(GlobalConfig.getConfigList("Messages.BeastRelease.Released"), Lists.newArrayList("%beast%"), Lists.newArrayList(beast.getName()))
+                .forEach(arena::broadcastMessage);
     }
 
 }

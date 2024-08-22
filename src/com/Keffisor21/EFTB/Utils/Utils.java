@@ -21,13 +21,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Utils {
-	public static String getMinecraftVersion() {
-	    Matcher matcher = Pattern.compile("(\\(MC: )([\\d\\.]+)(\\))").matcher(Bukkit.getVersion());
-	    if (matcher.find())
-	      return matcher.group(2); 
-	    return null;
-	}
-
 	public static Player getRandomPlayer(List<Player> players) {
 		return ((Player)players.get(new Random().nextInt(players.size())));
 	}
@@ -71,7 +64,7 @@ public class Utils {
 		return (int)(System.currentTimeMillis() / 1000);
 	}
 
-	public static LinkedHashMap<String, Integer>  sortByHighestInteger(HashMap<String, Integer> map) {
+	public static LinkedHashMap<String, Integer> sortByHighestInteger(HashMap<String, Integer> map) {
 		return map.entrySet().stream().sorted(Map.Entry.comparingByValue())
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
 	}
@@ -106,10 +99,6 @@ public class Utils {
 
 	public static String setVariables(String content) {
 		return content.replace("&", "§");
-	}
-
-	public static List<String> setVariables(List<String> content) {
-		return content.stream().map(Utils::setVariables).collect(Collectors.toList());
 	}
 
 }

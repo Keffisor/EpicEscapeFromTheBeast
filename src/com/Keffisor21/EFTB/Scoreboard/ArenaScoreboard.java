@@ -63,14 +63,10 @@ public class ArenaScoreboard {
     }
 
     public void setTitle(int page, String title) {
-        if (title == null) {
-            title = "";
-        }
-        if (title.length() > 32) {
-            title = title.substring(0, 32);
-        }
-        getPage(page).setDisplayName(title);
+        if (title == null) title = "";
+        if (title.length() > 32) title = title.substring(0, 32);
 
+        getPage(page).setDisplayName(title);
     }
 
     public void toggleScoreboard() {
@@ -78,16 +74,13 @@ public class ArenaScoreboard {
             getPlayer().setScoreboard(this.scoreboard);
         } else if (this.scoreboard.getObjective(DisplaySlot.SIDEBAR) == null) {
             getPage(this.lastPage).setDisplaySlot(DisplaySlot.SIDEBAR);
-        } else {
-            this.scoreboard.clearSlot(DisplaySlot.SIDEBAR);
-        }
+        } else this.scoreboard.clearSlot(DisplaySlot.SIDEBAR);
     }
 
     public void changePage(int page) {
+        if(this.scoreboard.getObjective(DisplaySlot.SIDEBAR) == null) return;
         this.lastPage = page;
-        if (this.scoreboard.getObjective(DisplaySlot.SIDEBAR) != null) {
-            getPage(page).setDisplaySlot(DisplaySlot.SIDEBAR);
-        }
+        getPage(page).setDisplaySlot(DisplaySlot.SIDEBAR);
     }
 
     public void setLineBlank(int page, int index) {
@@ -111,15 +104,12 @@ public class ArenaScoreboard {
     }
 
     public void setLine(int page, int index, String prefix, String suffix, boolean copyPreviousColors) {
-        if (prefix.length() > 16) {
-            prefix = prefix.substring(0, 16);
-        }
-        if (suffix.length() > 16) {
-            suffix = suffix.substring(0, 16);
-        }
-        if ((index < 0) || (index > 14)) {
+        if(prefix.length() > 16) prefix = prefix.substring(0, 16);
+        if(suffix.length() > 16) suffix = suffix.substring(0, 16);
+
+        if((index < 0) || (index > 14))
             throw new IllegalArgumentException("You can only get a line from 0 - 14");
-        }
+
         Objective obj = getPage(page);
 
         String name = ChatColor.getByChar(Integer.toHexString(page)) +
@@ -137,9 +127,8 @@ public class ArenaScoreboard {
 
         if(copyPreviousColors) {
             suffix = ChatColor.getLastColors(prefix) + suffix;
-            if (suffix.length() > 16) {
+            if(suffix.length() > 16)
                 suffix = suffix.substring(0, 16);
-            }
         }
 
         team.setSuffix(suffix);

@@ -48,7 +48,7 @@ public class TaskGameStart extends Task {
             if(players.size() >= arena.getMaxPlayers() && !arena.getArenaState().equals(ArenaState.STARTING)) {
                 if(timer > GlobalConfig.getTimingWaitingFull()) timer = GlobalConfig.getTimingWaitingFull();
 
-                arena.broadcastMessage("§9Server full, starting game...");
+                arena.broadcastMessage(GlobalConfig.getConfigString("Messages.GameStarting.ServerFull"));
                 arena.setArenaState(ArenaState.STARTING);
                 started.put(arena.getMap(), true);
             }
@@ -61,7 +61,8 @@ public class TaskGameStart extends Task {
 			for(int i = 3; i != 0; i--) {
                 if(i != timer) continue;
 
-				arena.broadcastMessage("§9The game will start in " + i + " seconds");
+				if(i != 1) arena.broadcastMessage(GlobalConfig.getConfigString("Messages.GameStarting.StartingCount"));
+				if(i == 1) arena.broadcastMessage(GlobalConfig.getConfigString("Messages.GameStarting.StartingCountLast"));
 
                 for(Player p : arena.getPlayers()) {
                     p.playSound(p.getLocation(), Sound.CLICK.getBukkitSound(), 1.0F, 1.0F);
@@ -97,9 +98,9 @@ public class TaskGameStart extends Task {
                 arena.getWorld().setGameRuleValue("doDaylightCycle", "false");
                 arena.getWorld().setGameRuleValue("doMobSpawning", "false");
 
-                arena.broadcastMessage("§9Gooooo!!!");
-                arena.broadcastMessage("§6The time of §a" + highestTimeVote + " §6has been selected for this game.");
-                arena.broadcastMessage("§6The speed §a" + highestSpeedVote + " §6has been selected for this game.");
+                GlobalConfig.getConfigList("Messages.GameStarted.Started").forEach(arena::broadcastMessage);
+                arena.broadcastMessage(GlobalConfig.getConfigString("Messages.GameStarted.TimeSelected_" + highestTimeVote));
+                arena.broadcastMessage(GlobalConfig.getConfigString("Messages.GameStarted.SpeedSelected_" + highestSpeedVote));
 
                 CagesController c = arena.getCagesController();
 
@@ -118,9 +119,9 @@ public class TaskGameStart extends Task {
 
                 beast.playSound(beast.getLocation(), Sound.ENDERDRAGON_GROWL.getBukkitSound(), 1.0F, 1.0F);
 
-                beast.sendTitle("", "§eYou're the §cBEAST");
+                beast.sendTitle(GlobalConfig.getConfigString("Messages.BeastRelease.PlayerSelected.Title"), "Messages.BeastRelease.PlayerSelected.Subtitle");
                 c.teleportBeastCage(beast);
-                beast.sendMessage("§eYou're the §cBEAST");
+                GlobalConfig.getConfigList("Messages.BeastRelease.PlayerSelected.Messages").forEach(beast::sendMessage);
 
                 this.runnable.cancel();
                 started.remove(arena.getMap());
@@ -134,7 +135,7 @@ public class TaskGameStart extends Task {
         }
 
 		if(arena.getArenaState() == ArenaState.STARTING) {
-			arena.broadcastMessage("§cFaltan jugadores para iniciar, esperando jugadores");
+			arena.broadcastMessage(GlobalConfig.getConfigString("Messages.GameStarting.NoEnoughPlayers"));
             arena.setArenaState(ArenaState.WAITING);
 		}
 

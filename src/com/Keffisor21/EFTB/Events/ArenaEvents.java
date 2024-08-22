@@ -3,6 +3,8 @@ package com.Keffisor21.EFTB.Events;
 import com.Keffisor21.EFTB.Arena.Arena;
 import com.Keffisor21.EFTB.Arena.ArenaManager;
 import com.Keffisor21.EFTB.Arena.ArenaState;
+import com.Keffisor21.EFTB.Configs.GlobalConfig;
+import com.Keffisor21.EFTB.EFTB;
 import com.Keffisor21.EFTB.Inventories.LootArenaMenu;
 import com.Keffisor21.EFTB.LobbyManager.Spawn;
 import com.Keffisor21.EFTB.Nms.Sound;
@@ -17,10 +19,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.*;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
 import java.util.List;
@@ -237,6 +236,20 @@ public class ArenaEvents implements Listener {
         if(arena == null || !e.toWeatherState()) return;
 
         e.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onCommand(PlayerCommandPreprocessEvent e) {
+        Player p = e.getPlayer();
+
+        Arena arena = ArenaManager.getArenaOfPlayer(p);
+        if(arena == null) return;
+
+        List<String> allowedCommands = EFTB.instance.getConfig().getStringList("Arena.AllowedCommands");
+        if(allowedCommands.contains(e.getMessage().toLowerCase())) return;
+
+        e.setCancelled(true);
+        p.sendMessage(GlobalConfig.getConfigString("Messages.NotAllowedCommand"));
     }
 
 }

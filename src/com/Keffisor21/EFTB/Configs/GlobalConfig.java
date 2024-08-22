@@ -4,6 +4,7 @@ import com.Keffisor21.EFTB.EFTB;
 import com.Keffisor21.EFTB.Utils.Utils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GlobalConfig {
 
@@ -24,7 +25,7 @@ public class GlobalConfig {
     }
 
     public static List<String> getConfigList(String path) {
-        return EFTB.instance.getConfig().getStringList(path);
+        return EFTB.instance.getConfig().getStringList(path).stream().map(Utils::setVariables).collect(Collectors.toList());
     }
 
 }
