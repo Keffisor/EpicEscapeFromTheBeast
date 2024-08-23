@@ -6,7 +6,6 @@ import com.Keffisor21.EFTB.Utils.Task;
 import com.Keffisor21.EFTB.Utils.WinEffects;
 
 import java.util.ArrayList;
-import java.util.stream.Stream;
 
 public class TaskGameFinished extends Task {
     private int timer = 11;

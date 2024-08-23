@@ -1,20 +1,19 @@
 package com.Keffisor21.EFTB.Tasks;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
-
+import com.Keffisor21.EFTB.Arena.Arena;
+import com.Keffisor21.EFTB.Arena.ArenaState;
+import com.Keffisor21.EFTB.ArenaControllers.CagesController;
 import com.Keffisor21.EFTB.Configs.GlobalConfig;
 import com.Keffisor21.EFTB.Nms.Sound;
 import com.Keffisor21.EFTB.Utils.Task;
-import org.bukkit.entity.Player;
-
 import com.Keffisor21.EFTB.Utils.Utils;
-import com.Keffisor21.EFTB.ArenaControllers.CagesController;
-import com.Keffisor21.EFTB.Arena.Arena;
-import com.Keffisor21.EFTB.Arena.ArenaState;
+import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class TaskGameStart extends Task {
     public static ConcurrentHashMap<String, Boolean> started = new ConcurrentHashMap<>();

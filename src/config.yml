@@ -22,6 +22,7 @@ Arena:
   WaitingStart: 100
   WaitingFull: 20
   BeastRelease: 15
+  ButtonsTeleport: true
   AllowedCommands:
     - leave
     - eftb leave
@@ -114,26 +115,38 @@ Menu:
       VotedForNormalSpeed: "&6%player% &ehas voted for &aNormal Speed! &e%votes% &eVotes!"
       VotedForIISpeed: "&6%player% &ehas voted for &aSpeed II! &e%votes% &eVotes!"
       VotedForIIISpeed: "&6%player% &ehas voted for &aSpeed III! &e%votes% &eVotes!"
-    TimeVoteMenu:
-      Title: "&7&lVote the time"
-      ItemTimeDayName: "&e&lDay"
-      ItemTimeDayLore:
-        - "&7Vote per day"
-        - "&4%votes% &4Votes"
-      ItemTimeSunriseName: "&4&lSunrise"
-      ItemTimeSunriseLore:
-        - "&7Vote per sunrise"
-        - "&4%votes% &4Votes"
-      ItemTimeNightName: "&8&lNight"
-      ItemTimeNightLore:
-        - "&7Vote per night"
-        - "&4%votes% &4Votes"
-      Messages:
-        AlreadyVoted: "&cYou have already voted!"
-        MissingRank: "&cYou need a higher rank for do this!"
-        VotedForDay: "&6%player% &ehas voted for &aDay! &e%votes% &eVotes!"
-        VotedForSunrise: "&6%player% &ehas voted for &aSunrise! &e%votes% &eVotes!"
-        VotedForNight: "&6%player% &ehas voted for &aNight! &e%votes% &eVotes!"
+  TimeVoteMenu:
+    Title: "&7&lVote the time"
+    ItemTimeDayName: "&e&lDay"
+    ItemTimeDayLore:
+      - "&7Vote per day"
+      - "&4%votes% &4Votes"
+    ItemTimeSunriseName: "&4&lSunrise"
+    ItemTimeSunriseLore:
+      - "&7Vote per sunrise"
+      - "&4%votes% &4Votes"
+    ItemTimeNightName: "&8&lNight"
+    ItemTimeNightLore:
+      - "&7Vote per night"
+      - "&4%votes% &4Votes"
+    Messages:
+      AlreadyVoted: "&cYou have already voted!"
+      MissingRank: "&cYou need a higher rank for do this!"
+      VotedForDay: "&6%player% &ehas voted for &aDay! &e%votes% &eVotes!"
+      VotedForSunrise: "&6%player% &ehas voted for &aSunrise! &e%votes% &eVotes!"
+      VotedForNight: "&6%player% &ehas voted for &aNight! &e%votes% &eVotes!"
 
 Item:
   PrincipalVoteMenu: "&aVote"
+
+Signs:
+  Status:
+    Waiting: "&2Waiting"
+    Starting: "&eStarting"
+    InGame: "&4In game"
+    Restarting: "&9Restarting"
+  Lines:
+    First: "&lEFTB"
+    Second: "%status%"
+    Third: "&n%map%"
+    Fourth: "&8%players_count%/%players_max_count%"

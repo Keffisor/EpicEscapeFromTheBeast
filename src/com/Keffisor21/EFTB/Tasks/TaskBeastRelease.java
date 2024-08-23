@@ -7,7 +7,6 @@ import com.Keffisor21.EFTB.Nms.Sound;
 import com.Keffisor21.EFTB.Utils.Task;
 import com.Keffisor21.EFTB.Utils.Utils;
 import com.google.common.collect.Lists;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

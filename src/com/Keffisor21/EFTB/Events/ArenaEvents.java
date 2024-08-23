@@ -24,6 +24,7 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class ArenaEvents implements Listener {
 
@@ -195,7 +196,7 @@ public class ArenaEvents implements Listener {
     public void onButtonClick(PlayerInteractEvent e) {
         // When a player clicks a button in the map will teleport it to the start of the arena
         List<Material> allowed = Lists.newArrayList(Utils.getMaterial("WOOD_BUTTON", "OAK_BUTTON"), Material.STONE_BUTTON);
-        if(e.getClickedBlock() == null || !allowed.contains(e.getClickedBlock().getType())) return;
+        if(!EFTB.instance.getConfig().getBoolean("Arena.ButtonsTeleport") || e.getClickedBlock() == null || !allowed.contains(e.getClickedBlock().getType())) return;
 
         Player p = e.getPlayer();
 
@@ -245,8 +246,8 @@ public class ArenaEvents implements Listener {
         Arena arena = ArenaManager.getArenaOfPlayer(p);
         if(arena == null) return;
 
-        List<String> allowedCommands = EFTB.instance.getConfig().getStringList("Arena.AllowedCommands");
-        if(allowedCommands.contains(e.getMessage().toLowerCase())) return;
+        List<String> allowedCommands = EFTB.instance.getConfig().getStringList("Arena.AllowedCommands").stream().map(String::toLowerCase).collect(Collectors.toList());
+        if(allowedCommands.contains(e.getMessage().toLowerCase().replace("/", ""))) return;
 
         e.setCancelled(true);
         p.sendMessage(GlobalConfig.getConfigString("Messages.NotAllowedCommand"));

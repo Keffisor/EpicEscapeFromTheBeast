@@ -2,8 +2,10 @@ package com.Keffisor21.EFTB.Signs;
 
 import com.Keffisor21.EFTB.Arena.Arena;
 import com.Keffisor21.EFTB.Arena.ArenaManager;
+import com.Keffisor21.EFTB.Configs.GlobalConfig;
 import com.Keffisor21.EFTB.EFTB;
 import com.Keffisor21.EFTB.Utils.Task;
+import com.Keffisor21.EFTB.Utils.Utils;
 import com.google.common.collect.Lists;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -130,26 +132,26 @@ public class SignsManager {
 
                 sign.update();
 
-                sign.setLine(0, "§lEFTB");
+                sign.setLine(0, GlobalConfig.getConfigString("Signs.Lines.First"));
 
                 switch(arena.getArenaState()) {
                     case WAITING: {
-                        sign.setLine(1, "§2Waiting");
+                        sign.setLine(1, Utils.setVariables(GlobalConfig.getConfigString("Signs.Lines.Second"), Lists.newArrayList("%status%"), Lists.newArrayList(GlobalConfig.getConfigString("Signs.Status.Waiting"))));
                         if(glassBlock != null) glassBlock.setTypeIdAndData(Material.STAINED_GLASS.getId(), (byte) 5, true);
                         break;
                     }
                     case STARTING: {
-                        sign.setLine(1, "§eStarting");
+                        sign.setLine(1, Utils.setVariables(GlobalConfig.getConfigString("Signs.Lines.Second"), Lists.newArrayList("%status%"), Lists.newArrayList(GlobalConfig.getConfigString("Signs.Status.Starting"))));
                         if(glassBlock != null) glassBlock.setTypeIdAndData(Material.STAINED_GLASS.getId(), (byte) 4, true);
                         break;
                     }
                     case IN_GAME: {
-                        sign.setLine(1, "§4In game");
+                        sign.setLine(1, Utils.setVariables(GlobalConfig.getConfigString("Signs.Lines.Second"), Lists.newArrayList("%status%"), Lists.newArrayList(GlobalConfig.getConfigString("Signs.Status.InGame"))));
                         if(glassBlock != null) glassBlock.setTypeIdAndData(Material.STAINED_GLASS.getId(), (byte) 14, true);
                         break;
                     }
                     case RESTARTING: {
-                        sign.setLine(1, "§9Restarting");
+                        sign.setLine(1, Utils.setVariables(GlobalConfig.getConfigString("Signs.Lines.Second"), Lists.newArrayList("%status%"), Lists.newArrayList(GlobalConfig.getConfigString("Signs.Status.Restarting"))));
                         if(glassBlock != null) glassBlock.setTypeIdAndData(Material.STAINED_GLASS.getId(), (byte) 3, true);
                         break;
                     }
@@ -157,8 +159,8 @@ public class SignsManager {
 
                 if(glassBlock != null) glassBlock.getState().update(true);
 
-                sign.setLine(2, "§n" + map);
-                sign.setLine(3, "§8" + arena.getPlayers().size() + "/" + arena.getMaxPlayers());
+                sign.setLine(2, Utils.setVariables(GlobalConfig.getConfigString("Signs.Lines.Third"), Lists.newArrayList("%map%"), Lists.newArrayList(map)));
+                sign.setLine(3, Utils.setVariables(GlobalConfig.getConfigString("Signs.Lines.Fourth"), Lists.newArrayList("%players_count%", "%players_max_count%"), Lists.newArrayList(arena.getPlayers().size(), arena.getMaxPlayers())));
 
                 sign.update(true);
             }
