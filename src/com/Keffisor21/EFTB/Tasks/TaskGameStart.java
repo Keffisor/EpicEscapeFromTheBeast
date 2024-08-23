@@ -7,6 +7,7 @@ import com.Keffisor21.EFTB.Configs.GlobalConfig;
 import com.Keffisor21.EFTB.Nms.Sound;
 import com.Keffisor21.EFTB.Utils.Task;
 import com.Keffisor21.EFTB.Utils.Utils;
+import com.google.common.collect.Lists;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -60,7 +61,7 @@ public class TaskGameStart extends Task {
 			for(int i = 3; i != 0; i--) {
                 if(i != timer) continue;
 
-				if(i != 1) arena.broadcastMessage(GlobalConfig.getConfigString("Messages.GameStarting.StartingCount"));
+				if(i != 1) arena.broadcastMessage(Utils.setVariables(GlobalConfig.getConfigString("Messages.GameStarting.StartingCount"), Lists.newArrayList("%seconds%"), Lists.newArrayList(timer)));
 				if(i == 1) arena.broadcastMessage(GlobalConfig.getConfigString("Messages.GameStarting.StartingCountLast"));
 
                 for(Player p : arena.getPlayers()) {
@@ -118,7 +119,7 @@ public class TaskGameStart extends Task {
 
                 beast.playSound(beast.getLocation(), Sound.ENDERDRAGON_GROWL.getBukkitSound(), 1.0F, 1.0F);
 
-                beast.sendTitle(GlobalConfig.getConfigString("Messages.BeastRelease.PlayerSelected.Title"), "Messages.BeastRelease.PlayerSelected.Subtitle");
+                beast.sendTitle(GlobalConfig.getConfigString("Messages.BeastRelease.PlayerSelected.Title.Title"), GlobalConfig.getConfigString("Messages.BeastRelease.PlayerSelected.Title.Subtitle"));
                 c.teleportBeastCage(beast);
                 GlobalConfig.getConfigList("Messages.BeastRelease.PlayerSelected.Messages").forEach(beast::sendMessage);
 

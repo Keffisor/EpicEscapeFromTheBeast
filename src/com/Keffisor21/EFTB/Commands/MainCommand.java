@@ -32,7 +32,7 @@ public class MainCommand implements CommandExecutor {
         Player p = (Player)sender;
 
         if(args.length == 0) {
-            sender.sendMessage(ChatColor.GOLD + "EpicEFTB by " + ChatColor.YELLOW + " Keffisor21");
+            sender.sendMessage(ChatColor.GOLD + "EpicEFTB by " + ChatColor.YELLOW + "Keffisor21");
 
             if(p.hasPermission("epiceftb.admin")) {
                 sender.sendMessage(ChatColor.GREEN + "/eftb setmainlobby");
